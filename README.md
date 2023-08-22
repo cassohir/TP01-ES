@@ -22,10 +22,10 @@ Ao clicar em um dos filmes recomendados, a função irá mostrar ao usuário em 
 
 ## ✒️ Membros da Equipe
 
-- Arthur Ryan - Full Stack Dev
-- Caio Teraoka - 2020027407 - Full Stack Dev
-- Cassio Izidorio - Full Stack Dev
-- Gabriel Junqueira - Full Stack Dev
+- Arthur Ryan Carvalho Figueiredo - 2020027326 - Full Stack Dev
+- Caio Teraoka de Menezes Câmara - 2020027407 - Full Stack Dev
+- Cássio Henrique Izidorio Rosa - 2020070361- Full Stack Dev
+- Gabriel Junqueira de Souza - 2020027571 - Full Stack Dev
 
   
 ## 🚀Tecnologias utilizadas
@@ -33,5 +33,5 @@ Ao clicar em um dos filmes recomendados, a função irá mostrar ao usuário em 
 - Node-JS - Software para desenvolvimento do BackEnd
 - React - Biblioteca para desenvolvimento do FrontEnd
 - API da OpenAI - Interface de programação para sistema de recomendação
-- API da - Interface de programação para saber onde cada filme pode ser assistido
+- API do JustWatch - Interface de programação para saber onde cada filme pode ser assistido
 - Github - Hospedagem de código e Sistema de versionamento
