@@ -2,9 +2,15 @@ import React, { useState } from 'react';
 import './Dashboard.css';
 import OpenAI from 'openai';
 
+interface Message {
+  role: string;
+  content: string;
+}
+
 function Dashboard() {
   const [searchTerm, setSearchTerm] = useState('');
   const [response, setResponse] = useState('');
+  const [movies, setMovies] = useState<string[]>([]);
 
   const handleSearchChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     setSearchTerm(event.target.value);
@@ -27,28 +33,36 @@ function Dashboard() {
 
       const assistantResponse = chatCompletion.choices[0].message.content;
       setResponse(assistantResponse);
+
+      // Extract movies from the response
+      const moviesArray = assistantResponse.split('\n').filter(movie => movie.trim() !== '');
+      setMovies(moviesArray);
     } catch (error) {
       console.error(error);
     }
   };
 
   return (
-    <div className="App">
-      <h1>Recomendador de Filmes</h1>
+    <div className="Dashboard">
+      <h1>Simple Search App</h1>
       <div className="search-container">
         <input
           type="text"
-          placeholder="Insira o nome do filme"
+          placeholder="Enter your search term..."
           value={searchTerm}
           onChange={handleSearchChange}
         />
-        <button onClick={handleSearchClick}>Pesquisar</button>
+        <button onClick={handleSearchClick}>Search</button>
       </div>
       <div className="response-container">
-        {response && (
-          <div className="response">
-            <h2>Filmes Recomendados:</h2>
-            <p>{response}</p>
+        {movies.length > 0 && (
+          <div className="movies-container">
+            <h2>Movies:</h2>
+            {movies.map((movie, index) => (
+              <div className="movie" key={index}>
+                {movie}
+              </div>
+            ))}
           </div>
         )}
       </div>
