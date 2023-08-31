@@ -44,20 +44,20 @@ function Dashboard() {
 
   return (
     <div className="Dashboard">
-      <h1>Simple Search App</h1>
+      <h1>Recomendador de Filmes</h1>
       <div className="search-container">
         <input
           type="text"
-          placeholder="Enter your search term..."
+          placeholder="Insira o nome de um filme"
           value={searchTerm}
           onChange={handleSearchChange}
         />
-        <button onClick={handleSearchClick}>Search</button>
+        <button onClick={handleSearchClick}>Buscar</button>
       </div>
       <div className="response-container">
         {movies.length > 0 && (
           <div className="movies-container">
-            <h2>Movies:</h2>
+            <h2>Filmes recomendados:</h2>
             {movies.map((movie, index) => (
               <div className="movie" key={index}>
                 {movie}
