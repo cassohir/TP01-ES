@@ -1,0 +1,8 @@
+.carrosel {
+    display: flex;
+    flex-direction: row;
+}
+
+.filme {
+    margin: 10px;
+}

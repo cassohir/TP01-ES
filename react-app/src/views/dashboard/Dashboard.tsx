@@ -1,16 +1,41 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import './Dashboard.css';
 import OpenAI from 'openai';
+import api from '../../services/api';
+import MovieCard from '../../components/cardMovie';
+import './Dashboard.css'
 
 interface Message {
   role: string;
   content: string;
 }
 
+interface Filme {
+  original_title: string;
+  id: string;
+  poster_path: string;
+  title: string;
+  overview: string;
+  release_date: string;
+}
+
 function Dashboard() {
   const [searchTerm, setSearchTerm] = useState('');
   const [response, setResponse] = useState('');
   const [movies, setMovies] = useState<string[]>([]);
+
+  const [filmesPopulares, setFilmesPopulares] = useState<Filme[]>([]);
+
+  useEffect(() => {
+    api
+      .get("")
+      .then((response:any) => setFilmesPopulares(response.data.results))
+          .catch((err:any) => {
+            console.error("ops! ocorreu um erro" + err);
+          });
+    }, []);
+
+
 
   const handleSearchChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     setSearchTerm(event.target.value);
@@ -44,27 +69,37 @@ function Dashboard() {
 
   return (
     <div className="Dashboard">
-      <h1>Recomendador de Filmes</h1>
-      <div className="search-container">
-        <input
-          type="text"
-          placeholder="Insira o nome de um filme"
-          value={searchTerm}
-          onChange={handleSearchChange}
-        />
-        <button onClick={handleSearchClick}>Buscar</button>
-      </div>
-      <div className="response-container">
-        {movies.length > 0 && (
-          <div className="movies-container">
-            <h2>Filmes recomendados:</h2>
-            {movies.map((movie, index) => (
-              <div className="movie" key={index}>
-                {movie}
-              </div>
-            ))}
+      <div>
+        <h1>Recomendador de Filmes</h1>
+          <div className="search-container">
+            <input
+              type="text"
+              placeholder="Insira o nome de um filme"
+              value={searchTerm}
+              onChange={handleSearchChange}
+            />
+            <button onClick={handleSearchClick}>Buscar</button>
           </div>
-        )}
+          <div className="response-container">
+            {movies.length > 0 && (
+              <div className="movies-container">
+                <h2>Filmes recomendados:</h2>
+                {movies.map((movie, index) => (
+                <div className="movie" key={index}>
+                  {movie}
+                </div>
+                ))}
+              </div>
+            )}
+          </div>
+      </div>
+
+      <div className='carrosel'>
+        {filmesPopulares.map((filme, index) => (
+        <div className="filme" key={index}>
+          <MovieCard titulo={filme.original_title} imagem={filme.poster_path} id={filme.id} data={filme.release_date} descricao={filme.overview}/>
+        </div>
+        ))}
       </div>
     </div>
     );
