@@ -2,11 +2,6 @@ import React, { useState } from 'react';
 import './Dashboard.css';
 import OpenAI from 'openai';
 
-interface Message {
-  role: string;
-  content: string;
-}
-
 function Dashboard() {
   const [searchTerm, setSearchTerm] = useState('');
   const [response, setResponse] = useState('');
