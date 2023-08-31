@@ -11,7 +11,6 @@ interface Message {
 }
 
 interface Filme {
-  original_title: string;
   id: string;
   poster_path: string;
   title: string;
@@ -97,7 +96,7 @@ function Dashboard() {
       <div className='carrosel'>
         {filmesPopulares.map((filme, index) => (
         <div className="filme" key={index}>
-          <MovieCard titulo={filme.original_title} imagem={filme.poster_path} id={filme.id} data={filme.release_date} descricao={filme.overview}/>
+          <MovieCard titulo={filme.title} imagem={filme.poster_path} id={filme.id} data={filme.release_date} descricao={filme.overview}/>
         </div>
         ))}
       </div>
