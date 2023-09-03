@@ -74,7 +74,7 @@ Tarefas e responsáveis
 - Integração da API com o front end da página [Gabriel]
 - Criar a seção da página para exibir os filmes indicados [Arthur e Caio]
 
-**História #4 - Como usuário eu gostariade ter uma lista de filmes recomendados**
+**História #4 - Como usuário eu gostaria de ter uma lista dos filmes que me foram recomendados**
 
 *Tarefas e responsáveis*
 - Criar o front end da página da lista [Arthur e Gabriel]
