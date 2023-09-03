@@ -11,14 +11,14 @@ O processo de desenvolvimento do sistema deve ser feito simulando um sprint do m
 1. **Login** <br>
 A feature consiste no processo de autenticação do usuário para acesso do sistema. Irá possuir duas caixas de entrada, email e senha.
 
-3. **Cadastro** <br>
+2. **Cadastro** <br>
 Essa função fará com que o usuário possa criar uma conta de acesso ao sistema, suas informações serão salvas no banco de dados para que assim ele possa realizar o login.
 
-4. **Recomendação de filmes** <br>
+3. **Recomendação de filmes** <br>
 Utilizando uma caixa de input, o usuário irá escrever o nome do filme no qual ele quer receber recomendações e o sistema retornará diversos filmes com enredo semelhante àquele escrito.
 
-5. **Onde assistir** <br>
-Ao clicar em um dos filmes recomendados, a função irá mostrar ao usuário em qual plataforma de streaming ele poderá assistir ao filme selecionado
+4. **Histórico de Filmes Recomendados** <br>
+Página que mostra um histórico de filmes pesquisados e recomendados ao usuário.
 
 ## ✒️ Membros da Equipe
 
@@ -33,7 +33,6 @@ Ao clicar em um dos filmes recomendados, a função irá mostrar ao usuário em 
 - Node-JS - Software para desenvolvimento do BackEnd
 - React - Biblioteca para desenvolvimento do FrontEnd
 - API da OpenAI - Interface de programação para sistema de recomendação
-- API do JustWatch - Interface de programação para saber onde cada filme pode ser assistido
 - Github - Hospedagem de código e Sistema de versionamento
 
 ## Backlog do Produto
@@ -47,7 +46,7 @@ Ao clicar em um dos filmes recomendados, a função irá mostrar ao usuário em 
 7. Como usuário eu gostaria de pesquisar por um filme específico
 8. Como usuário eu gostaria de adicionar filmes como favoritos
 9. Como usuário eu gostaria de ter uma lista de filmes que desejo assistir
-10. Como usuário eu gostaria de ter uma lista de filmes assistidos
+10. Como usuário eu gostaria de ter uma lista de filmes recomendados
 
 ## Backlog do Sprint
 
@@ -58,7 +57,7 @@ Tarefas e responsáveis
 - Instalar o React.js [Caio]
 - Criar o front end da página de registre-se [Caio]
 - Criar o back end da paǵina de registre-se [Cássio]
-- Criar o banco de dados para armazenar as informações dos usuários [Gabriel]
+- Criar o banco de dados para armazenar as informações dos usuários [Cássio]
 - Integrar o front com o back e o banco de dados [Cássio]
 
 **História #2 - Como usuário eu gostaria de logar no sistema**
@@ -68,19 +67,16 @@ Tarefas e responsáveis
 - Criar o back end da paǵina de login [Cássio]
 - Integrar o front com o back e o banco de dados [Cássio]
 
-**História #3 - Como usuário eu gostaria de saber onde assistir aos filmes**
-
-*Tarefas e responsáveis*
-- Criar o front end da página principal [Arthur]
-- Criar cards na página principal para mostrar os filmes [Arthur]
-- Criar pop-up para mostrar as informações do filme [Gabriel]
-- Implementação da API do The Movies Database [Gabriel]
-- Integração da API com o front end da página [Gabriel]
-
-
-**História #4 - Como usuário eu gostaria de receber recomendações de filmes**
+**História #3 - Como usuário eu gostaria de receber recomendações de filmes**
 
 *Tarefas e responsáveis*
 - Implementação da API do OpenAI [Gabriel]
-- Integração da API com o front end da página [Arthur]
-- Criar a seção da página para exibir os filmes indicados [Caio]
+- Integração da API com o front end da página [Gabriel]
+- Criar a seção da página para exibir os filmes indicados [Arthur e Caio]
+
+**História #4 - Como usuário eu gostariade ter uma lista de filmes recomendados**
+
+*Tarefas e responsáveis*
+- Criar o front end da página da lista [Arthur e Gabriel]
+- Integração da resposta obtida a partir da API com o front end da página [Gabriel]
+- Armazenamento do histórico de recomendações realizadas por meio do Browser [Cássio]
