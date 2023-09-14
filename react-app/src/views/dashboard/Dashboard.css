@@ -6,3 +6,14 @@
 .filme {
     margin: 10px;
 }
+
+
+.popular-container {
+    display: flex;
+    flex-direction: column;
+}
+
+.movies-image {
+    display: flex;
+    flex-direction: row;
+}
