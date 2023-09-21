@@ -1,0 +1,35 @@
+.login-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+}
+
+.login-form {
+  width: 30vw;
+  height: 40vh;
+  padding: 20px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
+  background-color: #fff; /* Adicione um fundo branco ao formulário */
+}
+
+.form-group {
+  margin-bottom: 15px; /* Aumente a margem inferior para espaço extra entre os campos */
+}
+
+label {
+  display: block;
+  font-weight: bold;
+}
+
+input {
+  width: 100%;
+  padding: 10px; /* Aumente o preenchimento para os campos */
+  margin-top: 4px;
+  border: 1px solid #ccc;
+  border-radius: 3px;
+  max-width: 80%;
+}
