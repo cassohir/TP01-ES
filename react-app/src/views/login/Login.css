@@ -1,35 +1,76 @@
-.login-container {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
+.Login {
+  width: 100vw;
   height: 100vh;
 }
 
-.login-form {
-  width: 30vw;
-  height: 40vh;
+.Login .form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: -2rem;
+}
+
+.Login .form .text {
+  font-size: 40px;
+  color: #1d3557;
+}
+
+.Login .form .email {
+  width: 500px;
+  height: 75px;
+  margin-top: 20px;
+
+  border-radius: 10px;
+  border: none;
+
+  background-color: #f1faee;
+}
+
+.Login .form .password {
+  width: 500px;
+  height: 75px;
+  margin-top: 40px;
+
+  border-radius: 10px;
+  border: none;
+
+  background-color: #f1faee;
+}
+
+.Login .form ::placeholder {
   padding: 20px;
-  border: 1px solid #ccc;
-  border-radius: 5px;
-  box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
-  background-color: #fff; /* Adicione um fundo branco ao formulário */
+  font-size: 24px;
 }
 
-.form-group {
-  margin-bottom: 15px; /* Aumente a margem inferior para espaço extra entre os campos */
+.Login .form .button {
+  width: 350px;
+  height: 70px;
+  margin-top: 40px;
+
+  border-radius: 10px;
+  border: none;
+  cursor: pointer;
+
+  background: #457b9d;
+
+  color: #f1faee;
+  font-size: 36px;
+  transition: 0.3s;
 }
 
-label {
-  display: block;
-  font-weight: bold;
+.Login .form .button:hover {
+  background-color: #1d3557;
+  color: white;
 }
 
-input {
-  width: 100%;
-  padding: 10px; /* Aumente o preenchimento para os campos */
-  margin-top: 4px;
-  border: 1px solid #ccc;
-  border-radius: 3px;
-  max-width: 80%;
+.Login .form .register {
+  margin-top: 40px;
+
+  font-size: 16px;
+  color: #1d3557;
+}
+
+.Login .form .register a {
+  text-decoration: none;
+  color: #1d3557;
 }

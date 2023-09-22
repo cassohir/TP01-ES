@@ -1,74 +1,97 @@
-import React, { useState } from 'react';
-import './Register.css';
+import { NavLink } from 'react-router-dom'
+import axios from 'axios'
+import { useState } from 'react'
+import { useHistory } from 'react-router'
 
-interface RegisterState {
-  username: string;
-  email: string;
-  password: string;
-}
+import Arrow from '../../assets/arrow.png'
 
-const initialRegisterState: RegisterState = {
-  username: '',
-  email: '',
-  password: '',
-};
+import './Register.css'
 
-const Register: React.FC = () => {
-  const [registerData, setRegisterData] = useState<RegisterState>(initialRegisterState);
+export default function Register() {
+  const [name, setName] = useState('')
+  const [email, setEmail] = useState('')
+  const [password, setPassword] = useState('')
+  const [passwordConfirmation, setPasswordConfirmation] = useState('')
 
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const { name, value } = e.target;
-    setRegisterData({ ...registerData, [name]: value });
-  };
+  const history = useHistory()
 
-  const handleSubmit = (e: React.FormEvent) => {
-    e.preventDefault();
-    // Aqui você pode adicionar a lógica de registro
-    console.log('Dados de registro:', registerData);
-  };
+  function handleNameChange(event: React.ChangeEvent<HTMLInputElement>) {
+    setName(event.target.value)
+  }
+
+  function handleEmailChange(event: React.ChangeEvent<HTMLInputElement>) {
+    setEmail(event.target.value)
+  }
+
+  function handlePasswordChange(event: React.ChangeEvent<HTMLInputElement>) {
+    setPassword(event.target.value)
+  }
+
+  function handlePasswordConfirmationChange(event: React.ChangeEvent<HTMLInputElement>) {
+    setPasswordConfirmation(event.target.value)
+  }
+
+  function handleSubmit(event: React.FormEvent) {
+    console.log('Enviar formulario')
+    event.preventDefault()
+    //axios
+    //  .post('URL DO REGISTRO AQUI', {
+    //    name: name,
+    //    email: email,
+    //    password: password,
+    //    passwordConfirmation: passwordConfirmation
+    //  })
+    //  .then(res => history.push('/'))
+    //  .catch(err => console.log(err))
+  }
 
   return (
-    <div className="register-container">
-      <h2>Registro</h2>
-      <form onSubmit={handleSubmit}>
-        <div className="form-group">
-          <label htmlFor="username">Nome de usuário:</label>
+    <div className="Register">
+      <div className="arrow">
+        <NavLink to="/">
+          <img src={Arrow} alt="Voltar" />
+        </NavLink>
+      </div>
+      <form method="POST" onSubmit={handleSubmit} className="form">
+        <div className="title">
+          <h1>Cadastro</h1>
+        </div>
+
+        <div className="line1">
           <input
+            className="name"
             type="text"
-            id="username"
-            name="username"
-            value={registerData.username}
-            onChange={handleChange}
-            required
+            placeholder="Nome"
+            onChange={handleNameChange}
           />
-        </div>
-        <div className="form-group">
-          <label htmlFor="email">Endereço de e-mail:</label>
           <input
+            className="email"
             type="email"
-            id="email"
-            name="email"
-            value={registerData.email}
-            onChange={handleChange}
-            required
+            placeholder="Email"
+            onChange={handleEmailChange}
           />
         </div>
-        <div className="form-group">
-          <label htmlFor="password">Senha:</label>
+
+        <div className="line2">
           <input
+            className="password"
             type="password"
-            id="password"
-            name="password"
-            value={registerData.password}
-            onChange={handleChange}
-            required
+            placeholder="Senha"
+            onChange={handlePasswordChange}
+          />
+          <input
+            className="repassword"
+            type="password"
+            placeholder="Repetir Senha"
+            onChange={handlePasswordConfirmationChange}
           />
         </div>
-        <button type="submit">Registrar</button>
+        <NavLink to="/">
+          <button type="submit" className="button">
+            Confirmar
+          </button>
+        </NavLink>
       </form>
     </div>
-  );
-};
-
-export default Register;
-
+  )
+}

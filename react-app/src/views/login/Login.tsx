@@ -1,69 +1,76 @@
-import React, { useState } from 'react';
-import './Login.css';
-import { Button } from '@mui/material';
-import Link from '@mui/material/Link';
+import axios from 'axios'
+import { useState } from 'react'
+import { useHistory } from 'react-router'
+import { NavLink } from 'react-router-dom'
 
-interface LoginState {
-  username: string;
-  password: string;
-}
+import './Login.css'
 
-const initialLoginState: LoginState = {
-  username: '',
-  password: '',
-};
+export default function Login() {
+  const [email, setEmail] = useState<string>('')
+  const [password, setPassword] = useState<string>('')
 
-const Login: React.FC = () => {
-  const [loginData, setLoginData] = useState<LoginState>(initialLoginState);
+  const history = useHistory()
 
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const { name, value } = e.target;
-    setLoginData({ ...loginData, [name]: value });
-  };
+  function handleEmailChange(event: React.ChangeEvent<HTMLInputElement>) {
+    setEmail(event.target.value)
+  }
 
-  const handleSubmit = (e: React.FormEvent) => {
-    e.preventDefault();
-    // Aqui você pode adicionar a lógica de autenticação
-    console.log('Dados de login:', loginData);
-  };
+  function handlePasswordChange(event: React.ChangeEvent<HTMLInputElement>) {
+    setPassword(event.target.value)
+  }
+
+  function handleSubmit(event: React.FormEvent) {
+    console.log('Enviando form')
+    event.preventDefault()
+    //axios
+    //  .post(
+    //    'URL DO LOGIN',
+    //    { email: email, password: password }
+    //  )
+    //  .then(res => history.push('/dashboard'))
+    //  .catch(err => console.log(err))
+  }
+
 
   return (
-    <div className="login-container">
-      <div className="login-form">
-        <h2>Login</h2>
-        <form onSubmit={handleSubmit}>
-          <div className="form-group">
-            <label htmlFor="username">Nome de usuário:</label>
-            <input
-              type="text"
-              id="username"
-              name="username"
-              value={loginData.username}
-              onChange={handleChange}
-              required
-            />
-          </div>
-          <div className="form-group">
-            <label htmlFor="password">Senha:</label>
-            <input
-              type="password"
-              id="password"
-              name="password"
-              value={loginData.password}
-              onChange={handleChange}
-              required
-            />
-          </div>
-          <Button variant="contained">Login</Button>
-        </form>
-        <div>
-            <p>Nao tem conta? 
-            <Link href="/register">Registre-se</Link>
-            </p>
+    <div className="Login">
+      <form method="POST" onSubmit={handleSubmit} className="form">
+        <div className="text">
+          <h1>Login</h1>
         </div>
-      </div>
-    </div>
-  );
-};
 
-export default Login;
+        <div className="line1">
+          <input
+            className="email"
+            type="email"
+            onChange={handleEmailChange}
+            placeholder="Email"
+          />
+        </div>
+
+        <div className="line2">
+          <input
+            className="password"
+            type="password"
+            onChange={handlePasswordChange}
+            placeholder="Password"
+          />
+        </div>
+
+        <div>
+          <NavLink to="/">
+            <button type="submit" className="button">
+              Entrar
+            </button>
+          </NavLink>
+        </div>
+
+        <div className="register">
+          <h2>
+            Não tem uma conta ainda? <a href="/register">Cadastre-se</a>
+          </h2>
+        </div>
+      </form>
+    </div>
+  )
+}
