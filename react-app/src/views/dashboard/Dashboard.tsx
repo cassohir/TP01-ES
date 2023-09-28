@@ -1,4 +1,3 @@
-
 import React, { useEffect, useState } from 'react';
 import './Dashboard.css';
 import OpenAI from 'openai';
@@ -59,7 +58,7 @@ function Dashboard() {
   const handleSearchClick = async () => {
     // Call the OpenAI API with user input
     const openai = new OpenAI({
-      apiKey: "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",
+      apiKey: "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",
       dangerouslyAllowBrowser: true 
     });
 
