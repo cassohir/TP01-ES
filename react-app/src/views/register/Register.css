@@ -1,0 +1,111 @@
+.Register {
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+.Register .arrow {
+  margin: 1px;
+  z-index: 2;
+}
+
+.Register .form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  margin-top: -5rem;
+}
+
+.Register .form .title {
+  width: 336px;
+  height: 108px;
+
+  font-size: 40px;
+
+  color: #1d3557;
+}
+
+.Register .form .line1 {
+  display: flex;
+  flex-direction: row;
+  margin-top: 132px;
+}
+
+.Register .form .name {
+  width: 500px;
+  height: 75px;
+  margin-right: 40px;
+
+  border-radius: 10px;
+  border: none;
+
+  background: #f1faee;
+}
+
+.Register .form .email {
+  width: 500px;
+  height: 75px;
+
+  border-radius: 10px;
+  border: none;
+
+  background: #f1faee;
+}
+
+.Register .form .line2 {
+  display: flex;
+  flex-direction: row;
+  margin-top: 59px;
+}
+
+.Register .form .password {
+  width: 500px;
+  height: 75px;
+  margin-right: 40px;
+
+  border-radius: 10px;
+  border: none;
+
+  background: #f1faee;
+}
+
+.Register .form .repassword {
+  width: 500px;
+  height: 75px;
+
+  border-radius: 10px;
+  border: none;
+
+  background: #f1faee;
+}
+
+.Register .form ::placeholder {
+  padding: 20px;
+  font-size: 24px;
+}
+
+.Register .form .button {
+  width: 350px;
+  height: 70px;
+  margin-top: 69px;
+
+  border-radius: 10px;
+  border: none;
+  cursor: pointer;
+
+  background: #457b9d;
+
+  color: #f1faee;
+  font-size: 36px;
+}
+
+.Register .form .button:hover {
+  background-color: #1d3557;
+  color: white;
+}
+
+.Register .form .button input::placeholder {
+  font-size: 24px;
+}
