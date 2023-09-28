@@ -12,9 +12,6 @@ function App() {
     <div className="App">
       <Router history={history}>
         <Switch>
-          <Route exact path="/login" component={Login} />
-          <Route path="/register" component={Register} />
-          <Route path="/" component={Dashboard} />
           <Route exact path="/" component={Login} />
           <Route path="/register" component={Register} />
           <Route path="/filmes" component={Dashboard} />
