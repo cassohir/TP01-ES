@@ -80,3 +80,9 @@ Tarefas e responsáveis
 - Criar o front end da página da lista [Arthur e Gabriel]
 - Integração da resposta obtida a partir da API com o front end da página [Gabriel]
 - Armazenamento do histórico de recomendações realizadas por meio do Browser [Cássio]
+
+
+## Diagramas UML
+**Diagrama de atividades:**
+![Diagrama UML](https://github.com/cassohir/TP01-ES/assets/80132097/fbc5c732-886a-4d07-9085-2e8893805de7)
+
