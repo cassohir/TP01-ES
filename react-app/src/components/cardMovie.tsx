@@ -1,4 +1,4 @@
-import * as React from 'react';
+import { useState } from "react";
 import { styled } from '@mui/material/styles';
 import Card from '@mui/material/Card';
 import CardHeader from '@mui/material/CardHeader';
@@ -28,7 +28,7 @@ interface Props {
 }
 
 const ExpandMore = styled((props: ExpandMoreProps) => {
-  const { expand, ...other } = props;
+  const {...other } = props;
   return <IconButton {...other} />;
 })(({ theme, expand }) => ({
   transform: !expand ? 'rotate(0deg)' : 'rotate(180deg)',
@@ -39,18 +39,26 @@ const ExpandMore = styled((props: ExpandMoreProps) => {
 }));
 
 export default function MovieCard(props: Props) {
-  const [expanded, setExpanded] = React.useState(false);
+  const [expanded, setExpanded] = useState(false);
+
+  const [cardWidth, setCardWidth] = useState<number>(250);
 
   const handleExpandClick = () => {
+    if (!expanded) {
+      setCardWidth(400);
+    } else {
+      setCardWidth(250);
+    }
     setExpanded(!expanded);
+    
   };
 
   return (
-    <Card sx={{ maxWidth: 345 }}>
+    <Card sx={{ width: cardWidth }}>
       <CardHeader
         avatar={
           <Avatar sx={{ bgcolor: red[500] }} aria-label="recipe">
-            <img key={props.id} src={`https://image.tmdb.org/t/p/original/${props.imagem}`} alt={props.titulo}></img>
+            <img key={props.id} width={50} src={`https://image.tmdb.org/t/p/original/${props.imagem}`} alt={props.titulo}></img>
           </Avatar>
         }
         action={
@@ -62,7 +70,7 @@ export default function MovieCard(props: Props) {
       />
       <CardMedia
         component="img"
-        height="194"
+        height="200"
         image={`https://image.tmdb.org/t/p/original/${props.imagem}`}
         alt="Paella dish"
       />
@@ -89,7 +97,7 @@ export default function MovieCard(props: Props) {
       </CardActions>
       <Collapse in={expanded} timeout="auto" unmountOnExit>
         <CardContent>
-          <Typography paragraph>Overview:</Typography>
+          <Typography paragraph>Sinopse:</Typography>
           <Typography paragraph>
             {props.descricao}
           </Typography>

@@ -7,4 +7,4 @@ const api = axios.create({
     baseURL: `https://api.themoviedb.org/3/movie/top_rated?api_key=${API_KEY}&language=pt-BR`,
   });
   
-  export default api;
+export default api;

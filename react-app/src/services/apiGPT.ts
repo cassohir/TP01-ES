@@ -8,4 +8,4 @@ const apiGPT = axios.create({
     baseURL: `http://www.omdbapi.com/?apikey=${API_KEY}&t=`
   });
   
-  export default apiGPT;
+export default apiGPT;

@@ -1,50 +1,51 @@
 
-import axios from 'axios'
-import { useState } from 'react'
-import { useHistory } from 'react-router'
-import { NavLink } from 'react-router-dom'
+import { useState } from 'react';
+import { useHistory } from 'react-router';
 
 import './Login.css'
+import { server } from '../../utils/config'
 
 export default function Login() {
-  const [email, setEmail] = useState<string>('')
-  const [password, setPassword] = useState<string>('')
 
-  const history = useHistory()
+  const [email, setEmail] = useState<string>('');
+  const [password, setPassword] = useState<string>('');
+  const [error, setError] = useState< "none" | "block">("none");
 
-  function handleEmailChange(event: React.ChangeEvent<HTMLInputElement>) {
-    setEmail(event.target.value)
-  }
+  const history = useHistory();
 
-  function handlePasswordChange(event: React.ChangeEvent<HTMLInputElement>) {
-    setPassword(event.target.value)
-  }
-
-  function handleSubmit(event: React.FormEvent) {
-    console.log('Enviando form')
-    event.preventDefault()
-    //axios
-    //  .post(
-    //    'URL DO LOGIN',
-    //    { email: email, password: password }
-    //  )
-    //  .then(res => history.push('/dashboard'))
-    //  .catch(err => console.log(err))
+  async function handleSubmit() {
+    console.info('Enviando form');
+    try {
+      const response = await server.post('/login',{ email: email, password: password })
+      if (response.data.status === 'success') {
+          history.push('/filmes');
+          window.location.reload();
+      } else {
+        throw new Error();
+      }
+      
+    } catch (error) {
+      setError("block");
+      console.error(error);
+      setTimeout(() => {
+        setError("none");
+      },2000)
+    }
   }
 
 
   return (
-    <div className="Login">
-      <form method="POST" onSubmit={handleSubmit} className="form">
-        <div className="text">
+    <div className="login">
+      
+          {/* <img src="/public/Movie.png"></img> */}
           <h1>Login</h1>
-        </div>
-
+        
+      <div className="form">
         <div className="line1">
           <input
             className="email"
             type="email"
-            onChange={handleEmailChange}
+            onChange={(e) => setEmail(e.target.value)}
             placeholder="Email"
           />
         </div>
@@ -53,25 +54,23 @@ export default function Login() {
           <input
             className="password"
             type="password"
-            onChange={handlePasswordChange}
-            placeholder="Password"
+            onChange={(e) => setPassword(e.target.value)}
+            placeholder="Senha"
           />
         </div>
-
-        <div>
-          <NavLink to="/">
-            <button type="submit" className="button">
+         <p style={{display: error }}>Usuário e/ou Senha incorretos!</p>
+          <div>
+            <button onClick={handleSubmit} className="submit">
               Entrar
             </button>
-          </NavLink>
-        </div>
-
+          </div>
+      </div>
+      
         <div className="register">
-          <h2>
+          <h3>
             Não tem uma conta ainda? <a href="/register">Cadastre-se</a>
-          </h2>
+          </h3>
         </div>
-      </form>
     </div>
   )
 }
