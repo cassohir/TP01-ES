@@ -1,12 +1,10 @@
-import React, { useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 import './Dashboard.css';
 import apiGPT from '../../services/apiGPT';
-import api from '../../services/api';
 import './Dashboard.css';
 import OpenAI from 'openai';
-import { PopularMoviesComponent } from '../../components/PopularMovies';
 
-export interface PopularMovies {
+export interface Movies {
   id: string;
   poster_path: string;
   title: string;
@@ -22,7 +20,8 @@ function Dashboard() {
   const [searchTerm, setSearchTerm] = useState('');
   const [movies, setMovies] = useState<string[]>([]);
   const [filmesSugeridos, setFilmesSugeridos] = useState<SuggestedMovies[]>([]);
-  const [filmesPopulares, setFilmesPopulares] = useState<PopularMovies[]>([]);
+
+
 
   
   useEffect(() => {
@@ -37,15 +36,6 @@ function Dashboard() {
           });
     } 
   },[]);
-
-  useEffect(() => {
-    api
-      .get("")
-      .then((response) => setFilmesPopulares(response.data.results))
-          .catch((err) => {
-            console.error("ops! ocorreu um erro" + err);
-          });
-    }, []);
   
   const handleSearchClick = async () => {
     // Call the OpenAI API with user input
@@ -112,7 +102,13 @@ function Dashboard() {
         )}
       </div>
 
-      <PopularMoviesComponent filmes={filmesPopulares} />
+      <div>
+        <a href='/populares'>Filmes populares</a>
+      </div>
+      
+      <div>
+        <a href='/novos'>Filmes novos</a>
+      </div>
 
     </div>
     );
