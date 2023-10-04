@@ -1,16 +1,16 @@
 import { useEffect, useState } from 'react';
 
 
-import { PopularMovies } from '../views/dashboard/Dashboard';
+import { Movies } from '../views/dashboard/Dashboard';
 
 interface Props {
-  filmes: PopularMovies[];
+  filmes: Movies[];
 }
 
 const useMovieRow = ({ filmes }: Props) => {
 
   const [margin, setMargin] = useState(0);
-  const [movie, setMovie] = useState<PopularMovies[]>([]);
+  const [movie, setMovie] = useState<Movies[]>([]);
 
   useEffect(() => {
      setMovie(filmes);
