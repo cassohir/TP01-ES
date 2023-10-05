@@ -1,62 +1,67 @@
-import { useEffect, useState } from 'react';
-import './Dashboard.css';
-import apiGPT from '../../services/apiGPT';
+import { useState, useEffect } from 'react';
 import './Dashboard.css';
 import OpenAI from 'openai';
 
-export interface Movies {
-  id: string;
-  poster_path: string;
-  title: string;
-  overview: string;
-  release_date: string;
-}
-
-interface SuggestedMovies {
-  Poster: string;
-}
-
 function Dashboard() {
   const [searchTerm, setSearchTerm] = useState('');
-  const [movies, setMovies] = useState<string[]>([]);
-  const [filmesSugeridos, setFilmesSugeridos] = useState<SuggestedMovies[]>([]);
+  const [movies, setMovies] = useState<{ title: string; link: string; poster: string }[]>([]);
 
-
-
-  
   useEffect(() => {
-    const novoVetor = [...filmesSugeridos];
-    for (let i=0; i<5;i++){
-      apiGPT
-        .get(`${movies[i]}`.substring(3))
-        .then((response) => novoVetor[i] = response.data)
-        .then(() => setFilmesSugeridos(novoVetor))
-          .catch((err) => {
-            console.error("ops! ocorreu um erro" + err);
-          });
-    } 
-  },[]);
-  
-  const handleSearchClick = async () => {
-    // Call the OpenAI API with user input
+    const fetchMoviePoster = async (title: string) => {
+      try {
+        const response = await fetch(`https://www.omdbapi.com/?t=${encodeURIComponent(title)}&apikey=87e9ddd6`);
+        const data = await response.json();
+        const poster = data.Poster || ''; // Get the poster URL from the API response
+        return poster;
+      } catch (error) {
+        console.error(error);
+        return '';
+      }
+    };
 
+    const updateMoviesWithPosters = async () => {
+      const moviesWithPosters = await Promise.all(
+        movies.map(async (movie) => ({
+          ...movie,
+          poster: await fetchMoviePoster(movie.title),
+        }))
+      );
+      setMovies(moviesWithPosters);
+    };
+
+    if (movies.length > 0) {
+      updateMoviesWithPosters();
+    }
+  }, [movies]);
+
+  const handleSearchClick = async () => {
     const openai = new OpenAI({
-      apiKey: "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",
-      dangerouslyAllowBrowser: true 
+      apiKey: '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',
+      dangerouslyAllowBrowser: true,
     });
     try {
       const chatCompletion = await openai.chat.completions.create({
-        model: "gpt-3.5-turbo",
+        model: 'gpt-3.5-turbo',
         messages: [
-          { role: "user", content: `Cite 5 nomes (somente os nomes) de sugestões de filmes para quem gostou do filme "${searchTerm}"` }
+          {
+            role: 'user',
+            content: `Name 5 titles (only the titles) of movie suggestions for those who enjoyed the movie "${searchTerm}"`,
+          },
         ],
       });
 
       const assistantResponse = chatCompletion.choices[0].message.content;
-      // Extract movies from the response
-      const moviesArray = assistantResponse?.split('\n').filter(movie => movie.trim() !== '') ?? [];
+      const moviesArray = assistantResponse
+        ?.split('\n')
+        .map((movie) => movie.replace(/["“”\d.]/g, '').trim()) // Remove quotation marks, digits, and dots
+        .filter((movie) => movie !== '')
+        .map((title) => ({
+          title,
+          link: `https://www.omdbapi.com/?t=${encodeURIComponent(title)}&apikey=87e9ddd6`,
+          poster: '', // Initially, set the poster to an empty string
+        })) || [];
+
       setMovies(moviesArray);
-      console.log(moviesArray);
     } catch (error) {
       console.error(error);
     }
@@ -66,53 +71,47 @@ function Dashboard() {
     <div className="Dashboard">
       <div>
         <h1>Recomendador de Filmes</h1>
-          <div className="search-container">
+        <div className="search-container">
           <input
-              className="searchBar"
-              type="text"
-              placeholder="Insira o nome de um filme"
-              value={searchTerm}
-              onChange={(e) => setSearchTerm(e.target.value)}
-            />
-            <button className="searchButton" onClick={handleSearchClick}>Buscar</button>
-          </div>
-          <div className="response-container">
-            {movies.length > 0 && (
-              <div className="movies-container">
-                <h2>Filmes recomendados:</h2>
-                {movies.map((movie, index) => (
+            className="searchBar"
+            type="text"
+            placeholder="Insira o nome de um filme"
+            value={searchTerm}
+            onChange={(e) => setSearchTerm(e.target.value)}
+          />
+          <button className="searchButton" onClick={handleSearchClick}>
+            Buscar
+          </button>
+        </div>
+        <div className="response-container">
+          {movies.length > 0 && (
+            <div className="movies-container">
+              <h2>Filmes recomendados:</h2>
+              {movies.map((movie, index) => (
                 <div className="movie" key={index}>
-                  {movie}
+                  <a href={movie.link} target="_blank" rel="noopener noreferrer">
+                    {movie.title}
+                  </a>
+                  <br />
+                  {movie.poster && (
+                    <img src={movie.poster} alt={`Poster for ${movie.title}`} />
+                  )}
                 </div>
-                ))}
-              </div>
-            )}
-          </div>
-      </div>
-
-      <div className="image-container">
-        {filmesSugeridos.length > 0 && (
-          <div className="movies-image">
-            {filmesSugeridos.map((movie, index) => (
-              <div className="movie" key={index}>
-                <img src={movie.Poster}></img>
-              </div>
-            ))}
-          </div>
-        )}
+              ))}
+            </div>
+          )}
+        </div>
       </div>
 
       <div>
-        <a href='/populares'>Filmes populares</a>
-      </div>
-      
-      <div>
-        <a href='/novos'>Filmes novos</a>
+        <a href="/populares">Filmes populares</a>
       </div>
 
+      <div>
+        <a href="/novos">Filmes novos</a>
+      </div>
     </div>
-    );
+  );
 }
 
 export default Dashboard;
-
