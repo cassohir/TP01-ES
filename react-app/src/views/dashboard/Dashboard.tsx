@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import React, { useState, useEffect } from 'react';
 import './Dashboard.css';
 import OpenAI from 'openai';
 
@@ -6,6 +6,7 @@ function Dashboard() {
   // State variables
   const [searchTerm, setSearchTerm] = useState('');
   const [movies, setMovies] = useState<{ title: string; link: string; poster: string }[]>([]);
+  const [selectedMovieInfo, setSelectedMovieInfo] = useState(null); // New state for movie details
 
   // Fetch movie posters when movies change
   useEffect(() => {
@@ -39,7 +40,7 @@ function Dashboard() {
   // Handle search button click
   const handleSearchClick = async () => {
     const openai = new OpenAI({
-      apiKey: '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',
+      apiKey: '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',
       dangerouslyAllowBrowser: true,
     });
     try {
@@ -70,6 +71,31 @@ function Dashboard() {
     }
   };
 
+  // Event handler for clicking on a movie poster
+  const handleMoviePosterClick = (movie) => {
+    if (movie.link) {
+      // Check if the clicked movie is the same as the currently selected one
+      if (selectedMovieInfo && selectedMovieInfo.Title === movie.title) {
+        // If it is, close the popup
+        setSelectedMovieInfo(null);
+      } else {
+        // If it's a different movie, fetch its details
+        fetchMovieDetails(movie.link);
+      }
+    }
+  };
+
+  // Function to fetch movie details from the OMDB API
+  const fetchMovieDetails = async (apiUrl) => {
+    try {
+      const response = await fetch(apiUrl);
+      const data = await response.json();
+      setSelectedMovieInfo(data);
+    } catch (error) {
+      console.error(error);
+    }
+  };
+
   // Render the component
   return (
     <div className="Dashboard">
@@ -88,34 +114,50 @@ function Dashboard() {
           </button>
         </div>
         <div className="response-container">
-  {movies.length > 0 && (
-    <div className="movies-list-container">
-      <h2 className="recommended-movies-heading">Filmes Recomendados:</h2>
-      <br />
-      <div className="movies-container">
-        {movies.map((movie, index) => (
-          <div className="movie" key={index}>
-            <a href={movie.link} target="_blank" rel="noopener noreferrer">
-              {movie.title}
-            </a>
-            <br />
-            {movie.poster && (
-              <img
-                src={movie.poster}
-                alt={`Poster for ${movie.title}`}
-                className="movie-poster"
-              />
-            )}
-          </div>
-        ))}
-      </div>
-    </div>
-  )}
-</div>
+          {movies.length > 0 && (
+            <div className="movies-list-container">
+              <h2 className="recommended-movies-heading">Filmes Recomendados</h2>
+              <div className="movies-container">
+                {movies.map((movie, index) => (
+                  <div
+                    className="movie"
+                    key={index}
+                    onClick={() => handleMoviePosterClick(movie)} // Attach click event handler
+                  >
+                    <a href={movie.link} target="_blank" rel="noopener noreferrer">
+                      {movie.title}
+                    </a>
+                    <br />
+                    {movie.poster && (
+                      <div className="movie-poster-container">
+                        <img
+                          src={movie.poster}
+                          alt={`Poster for ${movie.title}`}
+                          className="movie-poster"
+                        />
+                        {selectedMovieInfo && selectedMovieInfo.Title === movie.title && (
+                          <div className="movie-info-popup">
+                            <div className="movie-info">
+                              <h3>{selectedMovieInfo.Title}</h3>
+                              <p>Ano: {selectedMovieInfo.Year}</p>
+                              <p>Diretor: {selectedMovieInfo.Director}</p>
+                              <p>Ranking Imdb: {selectedMovieInfo.imdbRating}</p>
+                              {/* Add more movie details as needed */}
+                              <button onClick={() => setSelectedMovieInfo(null)} className="close-button">Fechar</button>
+                            </div>
+                          </div>
+                        )}
+                      </div>
+                    )}
+                  </div>
+                ))}
+              </div>
+            </div>
+          )}
+        </div>
       </div>
 
       <div>
-      <br />
         <a href="/populares">Filmes populares</a>
       </div>
 
