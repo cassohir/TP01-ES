@@ -89,3 +89,37 @@
   text-decoration: none; /* Remove underline from movie links */
   color: white; /* Set text color */
 }
+
+.movie-poster-container {
+  position: relative;
+  display: inline-block;
+}
+
+
+.movie-info-popup {
+  position: absolute;
+  top: 0;
+  left: 0;
+  background-color: rgba(0, 0, 0, 0.8);
+  color: white;
+  padding: 10px;
+  z-index: 1; /* Ensure the popup appears in front of the posters */
+  display: none;
+  /* Set the width and height to match the movie poster */
+  width: 160px; /* Adjust the width as needed */
+  height: 250px;
+  /* Center the popup content vertically and horizontally */
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.close-button {
+  color: black;
+}
+
+.movie-poster-container:hover .movie-info-popup {
+  display: block;
+  
+}
