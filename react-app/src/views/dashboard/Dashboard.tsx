@@ -141,7 +141,7 @@ function Dashboard() {
                               <h3>{selectedMovieInfo.Title}</h3>
                               <p className = "movie-infos-text">Ano: {selectedMovieInfo.Year}</p>
                               <p className = "movie-infos-text">Diretor: {selectedMovieInfo.Director}</p>
-                              <p className = "movie-infos-text">Ranking Imdb: {selectedMovieInfo.imdbRating}</p>
+                              <p className = "movie-infos-text">Nota no Imdb: {selectedMovieInfo.imdbRating}</p>
                               {/* Add more movie details as needed */}
                               <button onClick={() => setSelectedMovieInfo(null)} className="close-button">Fechar</button>
                             </div>
