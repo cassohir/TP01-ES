@@ -86,3 +86,5 @@ Tarefas e responsáveis
 **Diagrama de atividades:**
 ![Diagrama UML](https://github.com/cassohir/TP01-ES/assets/80132097/fbc5c732-886a-4d07-9085-2e8893805de7)
 
+**Diagrama de sequência:**
+![Diagrama de sequência básico](https://github.com/cassohir/TP01-ES/assets/80132097/d015434d-6dac-4c7a-8322-a5d7b349cbb9)
