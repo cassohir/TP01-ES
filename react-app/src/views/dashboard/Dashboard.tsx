@@ -40,7 +40,7 @@ function Dashboard() {
   // Handle search button click
   const handleSearchClick = async () => {
     const openai = new OpenAI({
-      apiKey: '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',
+      apiKey: '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',
       dangerouslyAllowBrowser: true,
     });
     try {
@@ -139,9 +139,9 @@ function Dashboard() {
                           <div className="movie-info-popup">
                             <div className="movie-info">
                               <h3>{selectedMovieInfo.Title}</h3>
-                              <p>Ano: {selectedMovieInfo.Year}</p>
-                              <p>Diretor: {selectedMovieInfo.Director}</p>
-                              <p>Ranking Imdb: {selectedMovieInfo.imdbRating}</p>
+                              <p className = "movie-infos-text">Ano: {selectedMovieInfo.Year}</p>
+                              <p className = "movie-infos-text">Diretor: {selectedMovieInfo.Director}</p>
+                              <p className = "movie-infos-text">Nota no Imdb: {selectedMovieInfo.imdbRating}</p>
                               {/* Add more movie details as needed */}
                               <button onClick={() => setSelectedMovieInfo(null)} className="close-button">Fechar</button>
                             </div>
@@ -156,8 +156,8 @@ function Dashboard() {
           )}
         </div>
       </div>
-
       <div>
+      <br />
         <a href="/populares">Filmes populares</a>
       </div>
 
