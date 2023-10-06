@@ -36,7 +36,7 @@ function Dashboard() {
 
   const handleSearchClick = async () => {
     const openai = new OpenAI({
-      apiKey: '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',
+      apiKey: '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',
       dangerouslyAllowBrowser: true,
     });
     try {
