@@ -3,15 +3,17 @@ import './Dashboard.css';
 import OpenAI from 'openai';
 
 function Dashboard() {
+  // State variables
   const [searchTerm, setSearchTerm] = useState('');
   const [movies, setMovies] = useState<{ title: string; link: string; poster: string }[]>([]);
 
+  // Fetch movie posters when movies change
   useEffect(() => {
     const fetchMoviePoster = async (title: string) => {
       try {
         const response = await fetch(`https://www.omdbapi.com/?t=${encodeURIComponent(title)}&apikey=87e9ddd6`);
         const data = await response.json();
-        const poster = data.Poster || ''; // Get the poster URL from the API response
+        const poster = data.Poster || '';
         return poster;
       } catch (error) {
         console.error(error);
@@ -34,6 +36,7 @@ function Dashboard() {
     }
   }, [movies]);
 
+  // Handle search button click
   const handleSearchClick = async () => {
     const openai = new OpenAI({
       apiKey: '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',
@@ -53,12 +56,12 @@ function Dashboard() {
       const assistantResponse = chatCompletion.choices[0].message.content;
       const moviesArray = assistantResponse
         ?.split('\n')
-        .map((movie) => movie.replace(/["“”\d.]/g, '').trim()) // Remove quotation marks, digits, and dots
+        .map((movie) => movie.replace(/["“”\d.]/g, '').trim())
         .filter((movie) => movie !== '')
         .map((title) => ({
           title,
           link: `https://www.omdbapi.com/?t=${encodeURIComponent(title)}&apikey=87e9ddd6`,
-          poster: '', // Initially, set the poster to an empty string
+          poster: '',
         })) || [];
 
       setMovies(moviesArray);
@@ -67,6 +70,7 @@ function Dashboard() {
     }
   };
 
+  // Render the component
   return (
     <div className="Dashboard">
       <div>
@@ -84,26 +88,34 @@ function Dashboard() {
           </button>
         </div>
         <div className="response-container">
-          {movies.length > 0 && (
-            <div className="movies-container">
-              <h2>Filmes recomendados:</h2>
-              {movies.map((movie, index) => (
-                <div className="movie" key={index}>
-                  <a href={movie.link} target="_blank" rel="noopener noreferrer">
-                    {movie.title}
-                  </a>
-                  <br />
-                  {movie.poster && (
-                    <img src={movie.poster} alt={`Poster for ${movie.title}`} />
-                  )}
-                </div>
-              ))}
-            </div>
-          )}
-        </div>
+  {movies.length > 0 && (
+    <div className="movies-list-container">
+      <h2 className="recommended-movies-heading">Filmes Recomendados:</h2>
+      <br />
+      <div className="movies-container">
+        {movies.map((movie, index) => (
+          <div className="movie" key={index}>
+            <a href={movie.link} target="_blank" rel="noopener noreferrer">
+              {movie.title}
+            </a>
+            <br />
+            {movie.poster && (
+              <img
+                src={movie.poster}
+                alt={`Poster for ${movie.title}`}
+                className="movie-poster"
+              />
+            )}
+          </div>
+        ))}
+      </div>
+    </div>
+  )}
+</div>
       </div>
 
       <div>
+      <br />
         <a href="/populares">Filmes populares</a>
       </div>
 
