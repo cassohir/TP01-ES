@@ -1,111 +1,63 @@
-.Register {
-  width: 100vw;
-  height: 100vh;
-  display: flex;
-  flex-direction: column;
+.register {
+  margin-top: 5rem;
 }
 
-.Register .arrow {
-  margin: 1px;
-  z-index: 2;
-}
-
-.Register .form {
+.form {
   display: flex;
   flex-direction: column;
   align-items: center;
-
-  margin-top: -5rem;
+  justify-content: center;
+  gap: 2rem;
 }
 
-.Register .form .title {
-  width: 336px;
-  height: 108px;
+input {
+  width: 20rem;
+  height: 2rem;
+  border: 1px solid #0d0d0d;
+  background-color: rgba(0, 0, 0, 0.2);
+  border-radius: 8px;
+  align-items: center;
+  padding: 0.625rem;
+  transition: border 0.1s, outline 0.1s;
+  color: white;
+  font-size: 1rem;
+}
+input:hover,
+input:focus {
+  outline: 2px solid #269915;
+}
 
-  font-size: 40px;
-
+a {
+  text-decoration: none;
   color: #1d3557;
 }
-
-.Register .form .line1 {
-  display: flex;
-  flex-direction: row;
-  margin-top: 132px;
-}
-
-.Register .form .name {
-  width: 500px;
-  height: 75px;
-  margin-right: 40px;
-
-  border-radius: 10px;
+.submit {
+  height: ;
+  width: 8rem;
   border: none;
-
-  background: #f1faee;
-}
-
-.Register .form .email {
-  width: 500px;
-  height: 75px;
-
-  border-radius: 10px;
-  border: none;
-
-  background: #f1faee;
-}
-
-.Register .form .line2 {
-  display: flex;
-  flex-direction: row;
-  margin-top: 59px;
-}
-
-.Register .form .password {
-  width: 500px;
-  height: 75px;
-  margin-right: 40px;
-
-  border-radius: 10px;
-  border: none;
-
-  background: #f1faee;
-}
-
-.Register .form .repassword {
-  width: 500px;
-  height: 75px;
-
-  border-radius: 10px;
-  border: none;
-
-  background: #f1faee;
-}
-
-.Register .form ::placeholder {
-  padding: 20px;
-  font-size: 24px;
-}
-
-.Register .form .button {
-  width: 350px;
-  height: 70px;
-  margin-top: 69px;
-
-  border-radius: 10px;
-  border: none;
-  cursor: pointer;
-
-  background: #457b9d;
-
-  color: #f1faee;
-  font-size: 36px;
-}
-
-.Register .form .button:hover {
-  background-color: #1d3557;
+  border-radius: 8px;
+  padding: 0.625rem;
   color: white;
+  background-color: #269915;
+}
+.submit:hover {
+  opacity: 0.6;
 }
 
-.Register .form .button input::placeholder {
-  font-size: 24px;
+h3 {
+  font-style: italic;
+  font-weight: normal;
+  font-size: 1rem;
+}
+a,
+h3 {
+  color: #808080;
+}
+a:visited {
+  color: #808080;
+}
+
+p {
+  color: rgba(255, 0, 0, 0.8);
+  margin: -0.5grem;
 }

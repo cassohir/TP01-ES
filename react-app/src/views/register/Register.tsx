@@ -1,7 +1,6 @@
-import { NavLink } from 'react-router-dom'
-import axios from 'axios'
-import { useState } from 'react'
-import { useHistory } from 'react-router'
+import { NavLink } from 'react-router-dom'; import { useState } from 'react';
+import { useHistory } from 'react-router';
+import { server } from '../../utils/config';
 
 import Arrow from '../../assets/arrow.png'
 
@@ -11,48 +10,55 @@ export default function Register() {
   const [name, setName] = useState('')
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
-  const [passwordConfirmation, setPasswordConfirmation] = useState('')
+  const [passwordConfirmation, setPasswordConfirmation] = useState('');
+  const [error, setError] = useState<"none" | "block">("none");
+  const [errorMessage, setErrorMessage] = useState<string>("Os dados não conferem");
 
   const history = useHistory()
 
-  function handleNameChange(event: React.ChangeEvent<HTMLInputElement>) {
-    setName(event.target.value)
+  const blinkError = (error: string | null | unknown) => {
+    if (error) setErrorMessage(error as string);
+    setError("block");
+      console.error(error);
+      setTimeout(() => {
+        setError("none");
+      },2000)
+
   }
 
-  function handleEmailChange(event: React.ChangeEvent<HTMLInputElement>) {
-    setEmail(event.target.value)
-  }
-
-  function handlePasswordChange(event: React.ChangeEvent<HTMLInputElement>) {
-    setPassword(event.target.value)
-  }
-
-  function handlePasswordConfirmationChange(event: React.ChangeEvent<HTMLInputElement>) {
-    setPasswordConfirmation(event.target.value)
-  }
-
-  function handleSubmit(event: React.FormEvent) {
-    console.log('Enviar formulario')
-    event.preventDefault()
-    //axios
-    //  .post('URL DO REGISTRO AQUI', {
-    //    name: name,
-    //    email: email,
-    //    password: password,
-    //    passwordConfirmation: passwordConfirmation
-    //  })
-    //  .then(res => history.push('/'))
-    //  .catch(err => console.log(err))
+  async function handleSubmit() {
+    console.info('Registrando usuário');
+    if (passwordConfirmation !== password) {
+      blinkError("As senhas não são iguais!");
+      return;
+    }
+    try {
+      const response = await server.post('/user', { name: name, email: email, password: password });
+      if (response.data.status === 'success') {
+        history.push('/');
+        window.alert("Usuário criado com sucesso!");
+        window.location.reload();
+      } else {
+        console.info('TESSTE 1');
+        console.log(response.data);
+        
+        throw new Error();
+      }
+      
+    } catch (error) {
+      const errorMessage = error?.response.data.message; 
+      blinkError(errorMessage);
+    }
   }
 
   return (
-    <div className="Register">
+    <div className="register">
       <div className="arrow">
         <NavLink to="/">
           <img src={Arrow} alt="Voltar" />
         </NavLink>
       </div>
-      <form method="POST" onSubmit={handleSubmit} className="form">
+      <div className="form">
         <div className="title">
           <h1>Cadastro</h1>
         </div>
@@ -62,13 +68,13 @@ export default function Register() {
             className="name"
             type="text"
             placeholder="Nome"
-            onChange={handleNameChange}
+            onChange={(e) => setName(e.target.value)}
           />
           <input
             className="email"
             type="email"
             placeholder="Email"
-            onChange={handleEmailChange}
+            onChange={(e) => setEmail(e.target.value)}
           />
         </div>
 
@@ -77,21 +83,21 @@ export default function Register() {
             className="password"
             type="password"
             placeholder="Senha"
-            onChange={handlePasswordChange}
+            onChange={(e) => setPassword(e.target.value)}
           />
           <input
             className="repassword"
             type="password"
             placeholder="Repetir Senha"
-            onChange={handlePasswordConfirmationChange}
+            onChange={(e) => setPasswordConfirmation(e.target.value)}
           />
+          
         </div>
-        <NavLink to="/">
-          <button type="submit" className="button">
-            Confirmar
+          <p style={{display: error }}>{ errorMessage  }</p>
+          <button onClick={handleSubmit} type="submit" className="submit">
+            Registrar
           </button>
-        </NavLink>
-      </form>
+      </div>
     </div>
   )
 }

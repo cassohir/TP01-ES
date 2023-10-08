@@ -8,6 +8,14 @@
   gap: 1.5rem;
 }
 
+.line1,
+.line2 {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 3rem;
+}
+
 input {
   width: 20rem;
   height: 2rem;
