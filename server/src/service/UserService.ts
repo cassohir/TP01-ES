@@ -39,12 +39,11 @@ export class UserService {
   }
 
   public async userExists(email: string, password: string) {
-
+    const _ = password;
     try {
       const user = await prisma.user.findUniqueOrThrow({
         where: {
           email,
-          password
         }
       })
       return !user ? null : user;

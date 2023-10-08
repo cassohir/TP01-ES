@@ -20,7 +20,7 @@ AuthRouter.post('/', async (req, res) => {
 
 
     const randomRash = crypto.randomBytes(16).toString('hex');
-    return res.status(401).json({
+    return res.status(200).json({
         message: 'Usuário Autenticado',
         status: 'success',
         token: randomRash

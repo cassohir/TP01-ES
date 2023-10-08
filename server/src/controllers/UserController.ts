@@ -15,6 +15,10 @@ UserRouter.post('/', async (req, res) => {
   try {
     const { email, password, name  } = req.body as UserModelInterface;
   
+    const userAlreadyExists = await userService.userExists(email, password);
+    if (userAlreadyExists) {
+      throw new Error("Usuário já existe!");
+    }
     const dbResponse = await userService.createUser({ email, password, name });
 
     res.status(201).json({
