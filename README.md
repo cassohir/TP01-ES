@@ -72,14 +72,13 @@ Tarefas e responsáveis
 *Tarefas e responsáveis*
 - Implementação da API do OpenAI [Gabriel]
 - Integração da API com o front end da página [Gabriel]
-- Criar a seção da página para exibir os filmes indicados [Arthur e Caio]
+- Criar a seção da página para exibir os filmes indicados [Gabriel]
 
-**História #4 - Como usuário eu gostaria de ter uma lista dos filmes que me foram recomendados**
+**História #4 - Como usuário eu gostaria de visualizar os filmes mais assistidos do momento**
 
 *Tarefas e responsáveis*
-- Criar o front end da página da lista [Arthur e Gabriel]
-- Integração da resposta obtida a partir da API com o front end da página [Gabriel]
-- Armazenamento do histórico de recomendações realizadas por meio do Browser [Cássio]
+- Criar o front end da página da lista [Arthur]
+- Integração da resposta obtida a partir da API com o front end da página [Arthur]
 
 
 ## Diagramas UML
