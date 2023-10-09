@@ -46,7 +46,7 @@ Lista que mostre filmes que foram recomendados recentemente.
 7. Como usuário eu gostaria de pesquisar por um filme específico
 8. Como usuário eu gostaria de adicionar filmes como favorito
 9. Como usuário eu gostaria de ter uma lista de filmes que desejo assistir
-10. Como usuário eu gostaria de ter uma lista de filmes recomendados
+10. Como usuário eu gostaria de ter uma lista dos filmes recomendados
 
 ## Backlog do Sprint
 
@@ -75,7 +75,7 @@ Tarefas e responsáveis
 - Criar a seção da página para exibir os filmes indicados [Gabriel]
 - Integrar títulos de filmes indicados com API que mostre posters e informações de cada filme [Gabriel]
 
-**História #4 - Como usuário eu gostaria de ter uma lista de filmes recomendados**
+**História #4 - Como usuário eu gostaria de ter uma lista dos filmes recomendados**
 
 *Tarefas e responsáveis*
 - Criar o front end das páginas das listas [Arthur]
