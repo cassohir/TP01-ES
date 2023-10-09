@@ -4,7 +4,7 @@ import { Movies } from "../dashboard/Dashboard";
 import { MoviesComponent } from '../../components/Movies';
 
 
-export default function PopularMovies() {
+export default function NewMovies() {
 
     const [filmesNovos, setFilmesNovos] = useState<Movies[]>([]);
 

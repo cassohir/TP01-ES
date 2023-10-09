@@ -20,7 +20,7 @@ export default function PopularMovies() {
     
     return (
         <div>
-            <MoviesComponent filmes={filmesPopulares} tipo='populares'/>
+            <MoviesComponent filmes={filmesPopulares} tipo='bem avaliados'/>
         </div>    
     )
 }
