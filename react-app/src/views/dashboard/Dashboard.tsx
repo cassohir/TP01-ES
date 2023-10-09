@@ -41,7 +41,7 @@ function Dashboard() {
   // Handle search button click
   const handleSearchClick = async () => {
     const openai = new OpenAI({
-      apiKey: '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',
+      apiKey: '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',
       dangerouslyAllowBrowser: true,
     });
     try {
@@ -176,16 +176,19 @@ function Dashboard() {
       </div>
       <div>
       <br />
-        <button><a href="/populares">Filmes bem avaliados</a></button>
+        <button className="close-button" ><a href="/populares">Filmes bem avaliados</a></button>
       </div>
 
       <div>
-        <button><a href="/novos">Filmes novos</a></button>
+      <br />
+        <button className="close-button"><a href="/novos">Filmes novos</a></button>
       </div>
 
       <div>
-        <h1>Historico de pesquisa</h1>
-        <button onClick={saveLocal}>Salvar historico</button>
+      <br />
+
+        <h2 className="subtitle-recommendations">Histórico de Recomendações</h2>
+        <button className="close-button" onClick={saveLocal}>Salvar Recomendações</button>
         {filmesHistorico.length > 0 && (
             <div>
               {filmesHistorico.map((filmesHist:any, index:any) => (
