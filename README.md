@@ -44,7 +44,7 @@ Lista que mostre filmes que foram recomendados recentemente.
 5. Como usuário eu gostaria de receber recomendações de filmes
 6. Como usuário eu gostaria de alterar meus dados cadastrais
 7. Como usuário eu gostaria de pesquisar por um filme específico
-8. Como usuário eu gostaria de adicionar filmes como favoritos
+8. Como usuário eu gostaria de adicionar filmes como favorito
 9. Como usuário eu gostaria de ter uma lista de filmes que desejo assistir
 10. Como usuário eu gostaria de ter uma lista de filmes recomendados
 
