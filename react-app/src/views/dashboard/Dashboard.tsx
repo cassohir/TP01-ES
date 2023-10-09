@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import './Dashboard.css';
 import OpenAI from 'openai';
-import { MoviesComponent } from '../../components/Movies';
 
 function Dashboard() {
   // State variables
@@ -100,19 +99,19 @@ function Dashboard() {
 
   const saveLocal = () => {
 
-    let a = new Array();
+    let arrayMovies = new Array();
 
     if (localStorage.hasOwnProperty("filmes")) {
       const filmesString = localStorage.getItem("filmes");
   
       if (filmesString !== null) {
-        a = (JSON.parse(filmesString));
+        arrayMovies = (JSON.parse(filmesString));
       }
     }
-    a.push(movies);
-    localStorage.setItem("filmes", JSON.stringify(a)); 
+    arrayMovies.push(movies);
+    localStorage.setItem("filmes", JSON.stringify(arrayMovies)); 
     
-    setfilmesHistorico(a);
+    setfilmesHistorico(arrayMovies);
   }
 
   // Render the component
