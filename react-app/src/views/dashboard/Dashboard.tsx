@@ -41,7 +41,7 @@ function Dashboard() {
   // Handle search button click
   const handleSearchClick = async () => {
     const openai = new OpenAI({
-      apiKey: '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',
+      apiKey: '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',
       dangerouslyAllowBrowser: true,
     });
     try {
@@ -185,24 +185,25 @@ function Dashboard() {
       </div>
 
       <div>
-      <br />
-
-        <h2 className="subtitle-recommendations">Histórico de Recomendações</h2>
-        <button className="close-button" onClick={saveLocal}>Salvar Recomendações</button>
-        {filmesHistorico.length > 0 && (
-            <div>
-              {filmesHistorico.map((filmesHist:any, index:any) => (
-                <div key={index}>
-                  {filmesHist.map((filmes:any, index2:any) => (
-                    <div key={index2}>
-                      <h3>{filmes.title}</h3>
-                    </div>
-                  ))}
-                </div>
-              ))}
+  <br />
+  <h2 className="subtitle-recommendations">Histórico de Recomendações</h2>
+  <button className="close-button" onClick={saveLocal}>
+    Salvar Recomendações
+  </button>
+  {filmesHistorico.length > 0 && (
+    <div className="recommendations-list">
+      {filmesHistorico.map((filmesHist: any, index: any) => (
+        <div className="recommendation-item" key={index}>
+          {filmesHist.map((filmes: any, index2: any) => (
+            <div key={index2}>
+              <h3>{filmes.title}</h3>
             </div>
-          )}         
-      </div>
+          ))}
+        </div>
+      ))}
+    </div>
+  )}
+</div>
     </div>
   );
 }
