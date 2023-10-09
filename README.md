@@ -17,8 +17,8 @@ Essa função fará com que o usuário possa criar uma conta de acesso ao sistem
 3. **Recomendação de filmes** <br>
 Utilizando uma caixa de input, o usuário irá escrever o nome do filme no qual ele quer receber recomendações e o sistema retornará diversos filmes com enredo semelhante àquele escrito.
 
-4. **Listas de Filmes bem Avaliados e Filmes Novos** <br>
-Páginas que mostram filmes bem avaliados e filmes novos.
+4. **Histórico de Recomendações Feitas** <br>
+Lista que mostre filmes que foram recomendados recentemente.
 
 ## ✒️ Membros da Equipe
 
@@ -74,7 +74,7 @@ Tarefas e responsáveis
 - Integração da API com o front end da página [Gabriel]
 - Criar a seção da página para exibir os filmes indicados [Gabriel]
 
-**História #4 - Como usuário eu gostaria de visualizar filmes bem avaliados e filmes novos**
+**História #4 - Como usuário eu gostaria de ter uma lista de filmes recomendados**
 
 *Tarefas e responsáveis*
 - Criar o front end das páginas das listas [Arthur]
