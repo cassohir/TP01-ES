@@ -70,7 +70,7 @@ Tarefas e responsáveis
 **História #3 - Como usuário eu gostaria de receber recomendações de filmes**
 
 *Tarefas e responsáveis*
-- Implementação da API do OpenAI [Gabriel]
+- Integração do sistema com a API do OpenAI [Gabriel]
 - Integração da API com o front end da página [Gabriel]
 - Criar a seção da página para exibir os filmes indicados [Gabriel]
 - Integrar títulos de filmes indicados com API que mostre posters e informações de cada filme [Gabriel]
