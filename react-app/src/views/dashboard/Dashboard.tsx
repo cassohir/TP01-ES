@@ -1,12 +1,14 @@
 import React, { useState, useEffect } from 'react';
 import './Dashboard.css';
 import OpenAI from 'openai';
+import { MoviesComponent } from '../../components/Movies';
 
 function Dashboard() {
   // State variables
   const [searchTerm, setSearchTerm] = useState('');
   const [movies, setMovies] = useState<{ title: string; link: string; poster: string }[]>([]);
   const [selectedMovieInfo, setSelectedMovieInfo] = useState(null); // New state for movie details
+  const [filmesHistorico, setfilmesHistorico] = useState<any>([]);
 
   // Fetch movie posters when movies change
   useEffect(() => {
@@ -40,7 +42,7 @@ function Dashboard() {
   // Handle search button click
   const handleSearchClick = async () => {
     const openai = new OpenAI({
-      apiKey: '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',
+      apiKey: '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',
       dangerouslyAllowBrowser: true,
     });
     try {
@@ -95,6 +97,23 @@ function Dashboard() {
       console.error(error);
     }
   };
+
+  const saveLocal = () => {
+
+    let a = new Array();
+
+    if (localStorage.hasOwnProperty("filmes")) {
+      const filmesString = localStorage.getItem("filmes");
+  
+      if (filmesString !== null) {
+        a = (JSON.parse(filmesString));
+      }
+    }
+    a.push(movies);
+    localStorage.setItem("filmes", JSON.stringify(a)); 
+    
+    setfilmesHistorico(a);
+  }
 
   // Render the component
   return (
@@ -158,11 +177,29 @@ function Dashboard() {
       </div>
       <div>
       <br />
-        <a href="/populares">Filmes populares</a>
+        <button><a href="/populares">Filmes bem avaliados</a></button>
       </div>
 
       <div>
-        <a href="/novos">Filmes novos</a>
+        <button><a href="/novos">Filmes novos</a></button>
+      </div>
+
+      <div>
+        <h1>Historico de pesquisa</h1>
+        <button onClick={saveLocal}>Salvar historico</button>
+        {filmesHistorico.length > 0 && (
+            <div>
+              {filmesHistorico.map((filmesHist:any, index:any) => (
+                <div key={index}>
+                  {filmesHist.map((filmes:any, index2:any) => (
+                    <div key={index2}>
+                      <h3>{filmes.title}</h3>
+                    </div>
+                  ))}
+                </div>
+              ))}
+            </div>
+          )}         
       </div>
     </div>
   );
