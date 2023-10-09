@@ -40,7 +40,7 @@ Lista que mostre filmes que foram recomendados recentemente.
 1. Como usuário eu gostaria de me registrar no sistema
 2. Como usuário eu gostaria de logar no sistema
 3. Como usuário eu gostaria de saber onde assistir aos filmes
-4. Como usuário eu gostaria de visualizar os filmes mais assistidos do momento
+4. Como usuário eu gostaria de visualizar os filmes bem avaliados
 5. Como usuário eu gostaria de receber recomendações de filmes
 6. Como usuário eu gostaria de alterar meus dados cadastrais
 7. Como usuário eu gostaria de pesquisar por um filme específico
