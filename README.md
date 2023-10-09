@@ -71,7 +71,7 @@ Tarefas e responsáveis
 
 *Tarefas e responsáveis*
 - Integração do sistema com a API do OpenAI [Gabriel]
-- Integração da API com o front end da página [Gabriel]
+- Implementação do front end da página [Gabriel]
 - Criar a seção da página para exibir os filmes indicados [Gabriel]
 - Integrar títulos de filmes indicados com API que mostre posters e informações de cada filme [Gabriel]
 
