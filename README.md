@@ -87,3 +87,8 @@ Tarefas e responsáveis
 
 **Diagrama de sequência:**
 ![Diagrama de sequência básico](https://github.com/cassohir/TP01-ES/assets/80132097/d015434d-6dac-4c7a-8322-a5d7b349cbb9)
+
+**Insights Contributors:**
+<br>
+![image](https://github.com/cassohir/TP01-ES/assets/80132097/313a5239-b805-42e8-aa06-d5d1f42662c3)
+
